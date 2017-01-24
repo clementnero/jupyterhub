@@ -100,20 +100,16 @@ flags.update({
 })
 
 page_template = """
-{% extends "templates/page.html" %}
+{% extends "templates/base.html" %}
 
 {% block header_buttons %}
-{{super()}}
-
-<a href='{{hub_control_panel_url}}'
- class='btn btn-default btn-sm navbar-btn pull-right'
- style='margin-right: 4px; margin-left: 2px;'
->
-Control Panel</a>
+<li>
+    <a href='{{hub_control_panel_url}}' >Control Panel</a>
+</li>
+<li>
+    <a href='{{hub_control_logout_url}}' >Logout</a>
+</li>
 {% endblock %}
-{% block logo %}
-<img src='{{logo_url}}' alt='Jupyter Notebook'/>
-{% endblock logo %}
 """
 
 def _exclude_home(path_list):
@@ -306,9 +302,12 @@ class SingleUserNotebookApp(NotebookApp):
         env.globals['hub_control_panel_url'] = \
             self.hub_host + url_path_join(self.hub_prefix, 'home')
 
+        env.globals['hub_control_logout_url'] = \
+            self.hub_host + url_path_join(self.hub_prefix, 'logout')
+
         # patch jinja env loading to modify page template
         def get_page(name):
-            if name == 'page.html':
+            if name == 'base.html':
                 return page_template
 
         orig_loader = env.loader

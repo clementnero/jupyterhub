@@ -1,82 +1,79 @@
 {% extends "page.html" %}
 
+{% block header_bar %}
+{% endblock %}
+
 {% block login_widget %}
 {% endblock %}
 
 {% block main %}
 
 {% block login %}
-<div id="login-main" class="container">
-{% if custom_html %}
-{{ custom_html }}
-{% elif login_service %}
-<div class="service-login">
-  <a class='btn btn-jupyter btn-lg' href='{{login_url}}'>
-    Sign in with {{login_service}}
-  </a>
+
+<div class="container">
+    <div class="row align-center">
+        <img src="{{ static_url('assets/img/logo-pwc-white-long.png') }}" style="max-width:400px" class="img-responsive center-block" alt="PwC datalab logo">
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text">
+
+            <h1>Cloud edition</h1>
+            <div class="description">
+                <p>
+                    Login to the DataLab Cloud Edition and start creating value from your data.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 form-box">
+            <div class="form-top">
+                <div class="form-top-left">
+                    <h3>Login</h3>
+                    <p>Enter your username and password to log on:</p>
+
+                </div>
+                <div class="form-top-right">
+                    <i class="fa fa-lock"></i>
+                </div>
+
+                {% if login_error %}
+                <div class="form-top-left">
+                    <p class="login-error">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        {{login_error}}
+                    </p>
+                </div>
+                {% endif %}
+
+            </div>
+            <div class="form-bottom">
+                <form role="form" action="{{login_url}}?next={{next}}" method="post" class="login-form">
+                    <div class="form-group">
+                        <label class="sr-only" for="username_input">Username</label>
+                        <input type="text" val="{{username}}" name="username" placeholder="Username..." class="form-username form-control" id="username_input">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="password_input">Password</label>
+                        <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password_input">
+                    </div>
+                    <button id="login_submit" type="submit" class="btn">Sign in!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 social-login">
+
+        </div>
+    </div>
 </div>
-{% else %}
-<form action="{{login_url}}?next={{next}}" method="post" role="form">
-  <div class="auth-form-header">
-    Sign in
-  </div>
-  <div class='auth-form-body'>
 
-    <p id='insecure-login-warning' class='hidden'>
-    Warning: JupyterHub seems to be served over an unsecured HTTP connection.
-    We strongly recommend enabling HTTPS for JupyterHub.
-    </p>
-
-    {% if login_error %}
-    <p class="login_error">
-      {{login_error}}
-    </p>
-    {% endif %}
-    <label for="username_input">Username:</label>
-    <input
-      id="username_input"
-      type="username"
-      autocapitalize="off"
-      autocorrect="off"
-      class="form-control"
-      name="username"
-      val="{{username}}"
-      tabindex="1"
-      autofocus="autofocus"
-    />
-    <label for='password_input'>Password:</label>
-    <input
-      type="password"
-      class="form-control"
-      name="password"
-      id="password_input"
-      tabindex="2"
-    />
-
-    <input
-      type="submit"
-      id="login_submit"
-      class='btn btn-jupyter'
-      value='Sign In'
-      tabindex="3"
-    />
-  </div>
-</form>
-{% endif %}
-</div>
 {% endblock login %}
 
 {% endblock %}
 
 {% block script %}
 {{super()}}
-
-<script>
-if (window.location.protocol === "http:") {
-  // unhide http warning
-  var warning = document.getElementById('insecure-login-warning');
-  warning.className = warning.className.replace(/\bhidden\b/, '');
-}
-</script>
 
 {% endblock %}

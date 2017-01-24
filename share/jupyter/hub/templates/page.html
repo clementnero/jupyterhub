@@ -33,7 +33,12 @@
     
     {% block stylesheet %}
     <link rel="stylesheet" href="{{ static_url("css/style.min.css") }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ static_url("assets/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ static_url("assets/font-awesome/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" href="{{ static_url("assets/css/form-elements.css") }}">
+    <link rel="stylesheet" href="{{ static_url("assets/css/style.css") }}">
     {% endblock %}
+
     <script src="{{static_url("components/requirejs/require.js") }}" type="text/javascript" charset="utf-8"></script>
     <script>
       require.config({
@@ -80,6 +85,7 @@
   </div>
 </noscript>
 
+{% block header_bar %}
 <div id="header" class="navbar navbar-static-top">
   <div class="container">
   <span id="jupyterhub-logo" class="pull-left"><a href="{{logo_url or base_url}}"><img src='{{base_url}}logo' alt='JupyterHub' class='jpy-logo' title='Home'/></a></span>
@@ -88,7 +94,7 @@
 
     <span id="login_widget">
       {% if user %}
-        <a id="logout" class="navbar-btn btn-sm btn btn-default pull-right" href="{{logout_url}}"> <i class="fa fa-sign-out"></i> Logout</a>
+        <a id="logout" class="navbar-btn btn-sm btn btn-default btn-logout pull-right" href="{{logout_url}}"> <i class="fa fa-sign-out"></i> Logout</a>
       {% else %}
         <a id="login" class="btn-sm btn navbar-btn btn-default pull-right" href="{{login_url}}">Login</a>
       {% endif %}
@@ -100,9 +106,15 @@
   {% endblock %}
   </div>
 </div>
+{% endblock %}
 
+<div class="top-content">
+    <div class="inner-bg">
 {% block main %}
 {% endblock %}
+    </div>
+</div>
+
 
 {% call modal('Error', btn_label='OK') %}
   <div class="ajax-error">
@@ -112,6 +124,10 @@
 
 {% block script %}
 {% endblock %}
+
+<script src="{{ static_url('assets/js/jquery-1.11.1.min.js') }}"></script>
+<script src="{{ static_url('assets/js/jquery.backstretch.js') }}"></script>
+<script src="{{ static_url('assets/js/scripts.js') }}"></script>
 
 </body>
 
