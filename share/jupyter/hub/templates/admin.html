@@ -1,5 +1,10 @@
 {% extends "page.html" %}
 
+{% block title %}
+PwC Datalab | Admin Panel
+{% endblock %}
+
+
 {% macro th(label, key='', colspan=1) %}
 <th data-sort="{{key}}" colspan="{{colspan}}">{{label}}
   {% if key %}
