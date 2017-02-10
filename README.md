@@ -1,22 +1,18 @@
+`This is a jupyterhub/jupyterhub fork for PwC Datalab Cloud Edition`
+
 **[Technical Overview](#technical-overview)** |
 **[Installation](#installation)** |
 **[Configuration](#configuration)** |
 **[Docker](#docker)** |
 **[Contributing](#contributing)** |
 **[License](#license)** |
-**[Help and Resources](#help-and-resources)**
+**[Help and Resources](#help-and-resources)**  
 
 
 # [JupyterHub](https://github.com/jupyterhub/jupyterhub)
 
-
-[![PyPI](https://img.shields.io/pypi/v/jupyterhub.svg)](https://pypi.python.org/pypi/jupyterhub)
-[![Documentation Status](https://readthedocs.org/projects/jupyterhub/badge/?version=latest)](http://jupyterhub.readthedocs.org/en/latest/?badge=latest) 
-[![Build Status](https://travis-ci.org/jupyterhub/jupyterhub.svg?branch=master)](https://travis-ci.org/jupyterhub/jupyterhub)
-[![Circle CI](https://circleci.com/gh/jupyterhub/jupyterhub.svg?style=shield&circle-token=b5b65862eb2617b9a8d39e79340b0a6b816da8cc)](https://circleci.com/gh/jupyterhub/jupyterhub)
-[![codecov.io](https://codecov.io/github/jupyterhub/jupyterhub/coverage.svg?branch=master)](https://codecov.io/github/jupyterhub/jupyterhub?branch=master) 
-[![Google Group](https://img.shields.io/badge/google-group-blue.svg)](https://groups.google.com/forum/#!forum/jupyter)
-
+## Functional overview
+ 
 With [JupyterHub](https://jupyterhub.readthedocs.io) you can create a
 **multi-user Hub** which spawns, manages, and proxies multiple instances of the
 single-user [Jupyter notebook (IPython notebook)](https://jupyter-notebook.readthedocs.io)
