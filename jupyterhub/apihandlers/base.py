@@ -95,6 +95,7 @@ class APIHandler(BaseHandler):
             'server': user.url if user.running else None,
             'pending': None,
             'last_activity': user.last_activity.isoformat(),
+            'cookie_id': user.cookie_id,
         }
         if user.spawn_pending:
             model['pending'] = 'spawn'
