@@ -8,8 +8,11 @@ from http.client import responses
 
 from tornado import web
 
+from datetime import datetime
+
 from ..handlers import BaseHandler
 from ..utils import url_path_join
+
 
 class APIHandler(BaseHandler):
 
@@ -96,6 +99,9 @@ class APIHandler(BaseHandler):
             'pending': None,
             'last_activity': user.last_activity.isoformat(),
             'cookie_id': user.cookie_id,
+            'total_time': user.total_time,
+            'last_spwaner_start': user.last_spwaner_start.isoformat(),
+            'utc_now': datetime.utcnow().isoformat()
         }
         if user.spawn_pending:
             model['pending'] = 'spawn'

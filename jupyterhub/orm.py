@@ -378,6 +378,8 @@ class User(Base):
 
     admin = Column(Boolean, default=False)
     last_activity = Column(DateTime, default=datetime.utcnow)
+    last_spwaner_start = Column(DateTime, default=datetime.utcnow)
+    total_time = Column(Integer, default=0)
 
     api_tokens = relationship("APIToken", backref="user")
     cookie_id = Column(Unicode(1023), default=new_token)

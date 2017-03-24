@@ -11,7 +11,7 @@ require(["jquery", "jhapi"], function ($, JHAPI) {
     $("#stop").click(function () {
         api.stop_server(user, {
             success: function () {
-                $("#stop").hide();
+                $("#stop").hide().trigger("spawner:stop");
             }
         });
     });

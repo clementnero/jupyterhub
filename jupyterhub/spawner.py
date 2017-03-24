@@ -16,6 +16,7 @@ import grp
 import warnings
 from subprocess import Popen
 from tempfile import mkdtemp
+from datetime import datetime
 
 from tornado import gen
 from tornado.ioloop import PeriodicCallback
@@ -806,6 +807,8 @@ class LocalProcessSpawner(Spawner):
             if self.ip:
                 self.user.server.ip = self.ip
             self.user.server.port = self.port
+        self.user.last_spwaner_start = datetime.utcnow()
+        self.db.commit()
         return (self.ip or '127.0.0.1', self.port)
 
     @gen.coroutine
@@ -863,6 +866,8 @@ class LocalProcessSpawner(Spawner):
         If `now` is set to True, do not wait for the process to die.
         Otherwise, it'll wait.
         """
+        self.user.total_time = int(self.user.total_time + (datetime.utcnow() - self.user.last_spwaner_start).total_seconds())
+        self.db.commit()
         if not now:
             status = yield self.poll()
             if status is not None:

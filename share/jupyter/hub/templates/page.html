@@ -33,6 +33,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     {% block stylesheet %}
+    <link rel="stylesheet" href="{{ static_url("components/flipclock/compiled/flipclock.css") }}">
     <link rel="stylesheet" href="{{ static_url("css/style.min.css") }}" type="text/css"/>
     <link rel="stylesheet" href="{{ static_url("assets/bootstrap/css/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ static_url("assets/font-awesome/css/font-awesome.min.css") }}">
@@ -52,6 +53,7 @@
             jquery: '../components/jquery/jquery.min',
             bootstrap: '../components/bootstrap/js/bootstrap.min',
             moment: "../components/moment/moment",
+            flipclock: "../components/flipclock/compiled/flipclock",
           },
           shim: {
             bootstrap: {
