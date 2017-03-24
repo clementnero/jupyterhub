@@ -104,10 +104,13 @@ page_template = """
 
 {% block header_buttons %}
 <li>
-    <a href='{{hub_control_panel_url}}' >Control Panel</a>
+    <a>Charging on Datalab OTP</a>
 </li>
 <li>
-    <a href='{{hub_control_logout_url}}' >Logout</a>
+    <a href='{{hub_control_panel_url}}'><i class="fa fa-sliders"></i> Control Panel</a>
+</li>
+<li>
+    <a href='{{hub_control_logout_url}}'><i class="fa fa-sign-out"></i> Logout</a>
 </li>
 {% endblock %}
 """
