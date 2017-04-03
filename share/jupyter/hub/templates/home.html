@@ -37,35 +37,8 @@ PwC Datalab | Control
 
 {% block script %}
 <script type="text/javascript">
-require(['home']);
-require(['flipclock','jhapi'],function(flip,jhapi){
-
-    $(document).ready(function() {
-        var clock;
-        var base_url = window.jhdata.base_url;
-        var user = window.jhdata.user;
-        var api = new jhapi(base_url);
-
-        api.get_user(user,{
-          success: function (user) {
-              var diff = user.total_time;
-              var autoStart = false;
-              if ($("#stop").is(':visible')) {
-                  var currentDate = new Date(user.utc_now);
-                  var pastDate  = new Date(user.last_spwaner_start);
-                  diff += (currentDate.getTime() / 1000 - pastDate.getTime() / 1000)
-                  autoStart = true
-              }
-              clock = $('.clock').FlipClock(diff, {
-                clockFace: 'DailyCounter',
-                autoStart: autoStart
-              });
-              $("#stop").on("spawner:stop", function(){
-                clock.stop()
-              })
-          }
-        })
-    });
-});
+    window.onload = function() {
+        require(["home"]);
+    }
 </script>
 {% endblock %}
