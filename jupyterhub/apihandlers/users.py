@@ -4,6 +4,7 @@
 # Distributed under the terms of the Modified BSD License.
 
 import json
+import re
 
 from tornado import gen, web
 
@@ -37,6 +38,9 @@ class UserListAPIHandler(APIHandler):
         for name in usernames:
             name = self.authenticator.normalize_username(name)
             if not self.authenticator.validate_username(name):
+                invalid_names.append(name)
+                continue
+            if name != re.sub('<[^<]+?>', '', name):
                 invalid_names.append(name)
                 continue
             user = self.find_user(name)
@@ -152,6 +156,8 @@ class UserAPIHandler(APIHandler):
         self._check_user_model(data)
         if 'name' in data and data['name'] != name:
             # check if the new name is already taken inside db
+            if data['name'] != re.sub('<[^<]+?>', '', data['name']):
+                raise web.HTTPError(400, "User %s is invalid!" % data['name'])
             if self.find_user(data['name']):
                 raise web.HTTPError(400, "User %s already exists, username must be unique" % data['name'])
         for key, value in data.items():
